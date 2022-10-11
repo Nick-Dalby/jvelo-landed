@@ -7,9 +7,9 @@ const TopNav = () => {
 
   return (
     <nav>
-      <div>
-        <Link to="/">Logo</Link>
-      </div>
+      
+        <Link to="/"><div className='logo'>J.VELO</div></Link>
+      
       <ul role="list" className="nav-links">
         <li>
           <NavLink to="/work">Work</NavLink>

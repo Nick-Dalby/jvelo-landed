@@ -1,5 +1,6 @@
 import { useQuery, gql } from '@apollo/client'
 import { PortableText } from '@portabletext/react'
+import { Link } from 'react-router-dom'
 
 const Pages = gql`
   query getPages {
@@ -47,17 +48,16 @@ const Main = () => {
 
   return (
     <>
-      <a className="new" href="#">
+      <Link to='/blog' className="new" href="#">
         <span role="button" className="new-btn">
           New!
         </span>
-        <p>some text...green yellow</p>
-      </a>
+        <p>check out the blog</p>
+      </Link>
+      <div className='main-body'>
 
-      <h1>{}</h1>
-      <h2>
         <PortableText value={data.Page.bodyRaw} components={components} />
-      </h2>
+      </div>
     </>
   )
 }

@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer>
       <NavLink to="/impressum">impressum</NavLink>
-      <div>some footer text</div>
+      <div>site by nd</div>
     </footer>
   )
 }
