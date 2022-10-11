@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@300;400&display=swap');
+
+
 body {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 400;
@@ -46,6 +49,7 @@ h3 {
 h1,
 h3 {
   font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
   font-size: clamp(1rem, calc(1rem + 3vw), 2rem);
 }
 
