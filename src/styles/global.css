@@ -7,7 +7,6 @@ body {
   background-size: 600% 600%;
   animation: gradient 15s ease infinite;
   height: 100vh;
-  /* overscroll-behavior: none; */
 }
 
 h1,
@@ -48,7 +47,8 @@ footer {
 
 nav a,
 footer a,
-.post a {
+.post a,
+.blog-post a {
   text-decoration: none;
   color: #101010;
 }
@@ -57,7 +57,8 @@ nav ul a:hover,
 nav ul a.active,
 footer a:hover,
 footer a.active,
-.post a:hover {
+.post a:hover,
+.blog-post a:hover {
   text-underline-offset: 3px;
   text-decoration-skip-ink: auto;
   text-decoration: underline;
@@ -146,6 +147,10 @@ nav ul {
   transform: translate(-85px, 50px);
   border-radius: 15px;
   padding: 15px;
+
+  -webkit-box-shadow:0px 0px 60px 2px rgba(246,255,117,0.25);
+  -moz-box-shadow: 0px 0px 60px 2px rgba(246,255,117,0.25);
+  box-shadow: 0px 0px 60px 2px rgba(246,255,117,0.25);
 }
 
 @media (max-width: 600px) {

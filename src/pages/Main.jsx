@@ -1,12 +1,23 @@
-import useFetch from "../hooks/useFetch"
+import { useQuery, gql } from '@apollo/client'
+
+const HEADING = gql`
+  query GetHead {
+    heading {
+      data {
+        attributes {
+          header
+        }
+      }
+    }
+  }
+`
 
 const Main = () => {
-
-  const { loading, error, data } = useFetch('http://localhost:1337/api/heading')
+  const { loading, error, data } = useQuery(HEADING)
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>error :(</p>
-
+  console.log(data)
 
   return (
     <>
@@ -17,7 +28,7 @@ const Main = () => {
         <p>some text...green yellow</p>
       </a>
 
-      <h1>{data.data.attributes.header}</h1>
+      <h1>{data.heading.data.attributes.header}</h1>
       <h2>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat qui
         corrupti aperiam at, facilis velit officiis explicabo cum temporibus
