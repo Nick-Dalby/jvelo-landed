@@ -9,7 +9,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 // apollo client
 const client = new ApolloClient({
-  uri: `http://localhost:1337/graphql`,
+  uri: `https://rgsu7qju.api.sanity.io/v1/graphql/production/default`,
   cache: new InMemoryCache(),
 })
 

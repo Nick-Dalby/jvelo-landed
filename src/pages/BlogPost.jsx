@@ -1,40 +1,32 @@
-import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useQuery, gql } from '@apollo/client'
-import ReactMarkdown from 'react-markdown'
+import { PortableText } from '@portabletext/react'
 
-const POST = gql`
-  query GetPost($id: ID!) {
-    post(id: $id) {
-      data {
-        id
-        attributes {
-          title
-          body
-          publishedAt
-        }
-      }
-    }
+const sanityPost = gql`
+query GetPost($id: ID!) {
+  Post(id: $id) {title, publishedAt, bodyRaw}
   }
 `
 
 const BlogPost = () => {
-  const { id } = useParams()
-  const { loading, error, data } = useQuery(POST, {
+  const location = useLocation()
+  const id = location.state
+
+  const { loading, error, data } = useQuery(sanityPost, {
     variables: { id: id },
   })
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>error :(</p>
 
-  console.log(data)
 
   return (
     <div className="blog-post">
-      <h1>{data.post.data.attributes.title}:</h1>
-      <ReactMarkdown>{data.post.data.attributes.body}</ReactMarkdown>
+      <h1>{data.Post.title}:</h1>
+      <PortableText value={data.Post.bodyRaw}/>
       <span className="date">
         <p>
-          {new Date(data.post.data.attributes.publishedAt).toLocaleString(
+          {new Date(data.Post.publishedAt).toLocaleString(
             'de-DE',
             'short'
           )}

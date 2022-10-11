@@ -1,39 +1,37 @@
 import { Link } from 'react-router-dom'
 import { useQuery, gql } from '@apollo/client'
-import ReactMarkdown from 'react-markdown'
+import { PortableText } from '@portabletext/react'
 
-const POSTS = gql`
-  query GetPosts {
-    posts {
-      data {
-        id
-        attributes {
-          title
-          body
-          publishedAt
-        }
+
+const sanityPosts = gql`
+  query getPosts {
+    allPost {
+      title
+      _id
+      slug {
+        current
       }
+      excerptRaw
     }
   }
 `
 
 const Blog = () => {
-  const { loading, error, data } = useQuery(POSTS)
-  console.log(data)
+  const { loading, error, data } = useQuery(sanityPosts)
+  console.log(data);
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>error :(</p>
 
   return (
     <div className="posts">
-      {data.posts.data.map((post) => (
-        <div key={post.id} className="post">
-          <Link to={`/blog/${post.id}`}>
-            <h2>{post.attributes.title}:</h2>
+      {data.allPost.map((post) => (
+        <div key={post.slug.current} className="post">
+          <Link to={`/blog/${post.slug.current}`} state={post._id}>
+            <h2>{post.title}:</h2>
           </Link>
-          
-          <ReactMarkdown>{post.attributes.body.substring(0, 150) + '...'}</ReactMarkdown>
-          <Link to={`/blog/${post.id}`}>read more</Link>
+          <PortableText value={post.excerptRaw} />
+          <Link to={`/blog/${post.slug.current}`} state={post._id}>read more</Link>
         </div>
       ))}
     </div>
