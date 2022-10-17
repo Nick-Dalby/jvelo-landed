@@ -10,6 +10,7 @@ React landing page + CMS integration 🚲
 **Tech used:** HTML, CSS, JavaScript, React, [Apollo Client](https://www.apollographql.com/apollo-client), [Sanity CMS](https://www.sanity.io/)
 
 Single page image gallery built with React.
+
 Features:
 
 - background gradient animation
